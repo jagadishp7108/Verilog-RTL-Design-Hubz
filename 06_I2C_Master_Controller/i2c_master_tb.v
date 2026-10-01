@@ -36,19 +36,19 @@ module i2c_master_tb;
     // 50 MHz Clock
     always #10 clk = ~clk;
 
-    // Dummy Slave acknowledging Address and Data
-    reg slave_drive_ack;
-    assign sda = (slave_drive_ack) ? 1'b0 : 1'bz;
+    // Emulate Slave ACK directly based on master state
+    reg slave_ack;
+    assign sda = (slave_ack) ? 1'b0 : 1'bz;
 
-    initial begin
-        slave_drive_ack = 0;
-        forever begin
-            @(negedge scl);
-            // Slave drives ACK when Master releases SDA
-            if (uut.state == 3'd3 || (uut.state == 3'd5 && !rw)) begin
-                slave_drive_ack = 1;
-                @(negedge scl);
-                slave_drive_ack = 0;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            slave_ack <= 1'b0;
+        end else begin
+            // Pull SDA low during ACK_ADDR and ACK_DATA states
+            if ((uut.state == 3'd3 || (uut.state == 3'd5 && !rw))) begin
+                slave_ack <= 1'b1;
+            end else begin
+                slave_ack <= 1'b0;
             end
         end
     end
@@ -62,7 +62,7 @@ module i2c_master_tb;
         start   = 0;
         addr    = 7'h50; // Device Address
         rw      = 0;    // Write
-        data_in = 8'hA5;// Data to write
+        data_in = 8'hA5;// Data byte 0xA5
 
         #50;
         rst_n = 1;
@@ -74,9 +74,11 @@ module i2c_master_tb;
         @(posedge clk);
         start = 1'b0;
 
-        #3500;
+        // Wait until transaction is complete
+        @(negedge busy);
+        #100;
 
-        $display("[INFO] I2C Master Byte Write Transaction Complete!");
+        $display("[INFO] I2C Master Transaction Finished with ack_error = %b", ack_error);
         $finish;
     end
 endmodule
