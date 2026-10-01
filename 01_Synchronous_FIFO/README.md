@@ -28,4 +28,4 @@ A synthesizable, parameterized synchronous FIFO (First-In, First-Out) buffer imp
   3. 16 consecutive reads verifying strict FIFO ordering (`24h`, `81h`, `09h`, `63h`, etc.) until drain (asserting `empty = 1`).
 
 ### Simulation Waveform
-![FIFO Simulation Waveform](01_Synchronous_FIFO/Sync_FIFO.png)
+![FIFO Simulation Waveform](Sync_FIFO.png)
