@@ -30,4 +30,5 @@ The transmission cycle progresses through four distinct hardware states:
   3. Subsequent back-to-back transmission of `0x3C` (`00111100b`) confirming correct `tx_busy` de-assertion and frame recovery.
 
 ### Simulation Waveform
-![UART TX Simulation Waveform](Config_UART Controller.png)
+![UART TX Simulation Waveform]
+Config_UART Controller.png
