@@ -115,8 +115,3 @@ The subsystem was verified using an end-to-end directed testbench on **Icarus Ve
 └── README.md                    # Technical documentation and architecture specification
 
 ```
-
----
-```
-
-```
