@@ -12,7 +12,7 @@ Each subsystem includes fully synthesizable RTL code, comprehensive self-checkin
 ## Repository Structure & Project Directory
 
 ```text
-Verilog-RTL-Design-Hub/
+Verilog-RTL-Design-Hubz/
 ├── 01_Synchronous_FIFO/
 │   ├── fifo_sync.v
 │   ├── fifo_sync_tb.v
@@ -49,3 +49,15 @@ Verilog-RTL-Design-Hub/
 │   ├── axi4_lite_slave_waveform.png
 │   └── README.md
 └── README.md
+---
+
+Author & Contact
+Jagadisha Padhi
+
+Aspiring Silicon / ASIC Design Engineer | B.Tech ECE (Class of 2027), FISAT
+
+LinkedIn: linkedin.com/in/jagadisha-padhi96v
+
+GitHub: github.com/jagadishp7108
+
+Portfolio Repository: Verilog-RTL-Design-Hubz
